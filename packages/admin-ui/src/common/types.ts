@@ -1189,6 +1189,13 @@ export interface VolumeData extends VolumeOwnershipData {
   fileSystem?: MountpointData;
 }
 
+export type EthClients = "geth" | "erigon" | "nethermind" | "turbogeth";
+export interface EthClient {
+  ethclient: Partial<EthClients>;
+  status: EthClientStatus;
+  rpcEndpoint: string;
+}
+
 /**
  * Eth provider / client types
  * Manage the Ethereum multi-client setup

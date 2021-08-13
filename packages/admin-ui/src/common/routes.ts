@@ -37,7 +37,8 @@ import {
   InstalledPackageDataApiReturn,
   WifiReport,
   CurrentWifiCredentials,
-  LocalProxyingStatus
+  LocalProxyingStatus,
+  EthClient
 } from "./types";
 
 export interface Routes {
@@ -208,6 +209,11 @@ export interface Routes {
     target: EthClientTarget;
     deletePrevEthClient?: boolean;
   }) => Promise<void>;
+
+  /**
+   * Return array of available clients to connect a wallet (i.e metmask)
+   */
+  ethClientsGet: () => Promise<EthClient[]>;
 
   /**
    * Return formated core update data
@@ -618,6 +624,7 @@ export const routesData: { [P in keyof Routes]: RouteData } = {
   dockerEngineUpdateCheck: {},
   ethClientFallbackSet: { log: true },
   ethClientTargetSet: { log: true },
+  ethClientsGet: {},
   fetchCoreUpdateData: {},
   fetchDirectory: {},
   fetchDnpRequest: {},
