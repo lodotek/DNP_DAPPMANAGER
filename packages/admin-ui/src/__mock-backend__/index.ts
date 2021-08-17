@@ -224,7 +224,39 @@ export const otherCalls: Omit<Routes, keyof typeof namedSpacedCalls> = {
   runHostSecurityUpdates: async () =>
     "Security updates have been executed successfully, no reboot needed",
   natRenewalEnable: async () => {},
-  natRenewalIsEnabled: async () => true
+  natRenewalIsEnabled: async () => true,
+  ethClientsGet: async () => [
+    {
+      ok: true,
+      url: "http://geth.dappnode:8545",
+      dnpName: "geth.dnp.dappnode.eth",
+      chainId: "0x1"
+    },
+    {
+      ok: true,
+      url: "http://goerli-geth.dappnode:8545",
+      dnpName: "goerli-geth.dnp.dappnode.eth",
+      chainId: "0x5"
+    },
+    {
+      ok: true,
+      url: "http://nethermind-xdai.dappnode:8545",
+      dnpName: "nethermind-xdai.dnp.dappnode.eth",
+      chainId: "0x64"
+    },
+    {
+      ok: true,
+      url: "http://ropsten.dappnode:8545",
+      dnpName: "ropsten.dnp.dappnode.eth",
+      chainId: "0x3"
+    },
+    {
+      ok: true,
+      url: "http://rinkeby.dappnode:8545",
+      dnpName: "rinkeby.dnp.dappnode.eth",
+      chainId: "0x4"
+    }
+  ]
 };
 
 export const calls: Routes = {

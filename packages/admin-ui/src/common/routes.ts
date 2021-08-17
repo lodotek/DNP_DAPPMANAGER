@@ -38,7 +38,7 @@ import {
   WifiReport,
   CurrentWifiCredentials,
   LocalProxyingStatus,
-  EthClient
+  EthClientWallet
 } from "./types";
 
 export interface Routes {
@@ -213,7 +213,7 @@ export interface Routes {
   /**
    * Return array of available clients to connect a wallet (i.e metmask)
    */
-  ethClientsGet: () => Promise<EthClient[]>;
+  ethClientsGet: () => Promise<EthClientWallet[]>;
 
   /**
    * Return formated core update data
