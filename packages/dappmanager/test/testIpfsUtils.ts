@@ -17,6 +17,8 @@ const ipfsApiPort = "5001";
 const ipfsGatewayPort = "8080";
 const timeout = 30 * 1000;
 
+export const ipfsGatewayUrl = `${ipfsLocalUrl}:${ipfsGatewayPort}`;
+
 type IpfsAddResult = {
   path: string;
   hash: string;
@@ -31,7 +33,7 @@ export const localIpfsApi: IPFSHTTPClient = create({
 });
 
 export const localIpfsGateway: IPFSHTTPClient = create({
-  url: ipfsLocalUrl + ":" + ipfsGatewayPort,
+  url: ipfsGatewayUrl,
   timeout
 });
 
