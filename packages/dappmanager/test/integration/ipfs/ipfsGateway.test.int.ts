@@ -50,7 +50,7 @@ describe("IPFS remote", function () {
   });
 
   after(async () => {
-    // Set remote IPFS host
+    // Set remote IPFS host again
     ipfs.changeHost(ipfsGatewayUrl, IpfsClientTarget.local);
   });
 });
