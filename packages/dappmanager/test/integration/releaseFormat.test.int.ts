@@ -5,13 +5,15 @@ import * as calls from "../../src/calls";
 import { createTestDir, beforeAndAfter, cleanTestDir } from "../testUtils";
 import params from "../../src/params";
 import shell from "../../src/utils/shell";
-import { TrustedReleaseKey } from "../../src/types";
+import { IpfsClientTarget, TrustedReleaseKey } from "../../src/types";
 import {
   cleanInstallationArtifacts,
   uploadDirectoryRelease,
   uploadManifestRelease
 } from "../integrationSpecs";
 import { mockImageEnvNAME } from "../integrationSpecs/mockImage";
+import { ipfs } from "../../src/modules/ipfs";
+import { ipfsGatewayUrl } from "../testIpfsUtils";
 
 /**
  * Generate mock releases in the different formats,
@@ -199,6 +201,10 @@ describe("Release format tests", () => {
     if (!networkExists) await shell(`docker network create ${dncoreNetwork}`);
   });
 
+  before("Change IPFS host", async () => {
+    ipfs.changeHost(ipfsGatewayUrl, IpfsClientTarget.remote);
+  });
+
   for (const releaseTest of releaseTests) {
     const {
       id,
@@ -278,5 +284,8 @@ describe("Release format tests", () => {
   after("Remove DAppNode docker network", async () => {
     await shell(`docker network remove ${params.DNP_PRIVATE_NETWORK_NAME}`);
     await cleanTestDir();
+
+    // Set remote IPFS host again
+    ipfs.changeHost(ipfsGatewayUrl, IpfsClientTarget.local);
   });
 });
